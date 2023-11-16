@@ -1,8 +1,14 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Home(props) {
   const { current } = props;
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push({ pathname: "about" });
+  };
 
   return (
     <>
@@ -23,13 +29,14 @@ export default function Home(props) {
             React
           </Link>
         </div>
+        <button onClick={handleClick}>About</button>
       </main>
     </>
   );
 }
 
 export async function getStaticProps(context) {
-  console.log("getStaticProps is running");
+  console.log("getStaticProps is running on index");
   const date = new Date();
 
   var h = date.getHours();

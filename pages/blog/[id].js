@@ -24,10 +24,10 @@ export default function Blogid(props) {
 }
 
 export async function getStaticProps(context) {
-  console.log("getStaticProps is running");
-
   const { params } = context;
   const blogid = params.id;
+
+  console.log(`getStaticProps is running on ${blogid}`); //this won't appear on the prod server log, but can appear on the dev server blog
 
   return {
     props: {
@@ -37,6 +37,8 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
+  console.log("getStaticPaths is running"); //this won't appear on the server log, whatever dev or prod
+
   return {
     paths: [{ params: { id: "react" } }, { params: { id: "vue" } }],
     fallback: false,
